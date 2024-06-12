@@ -1,6 +1,7 @@
 # coderhack
 
-
+Edit application properties with mongodb proerties
+Run CoderhackApplication.java
 
 # Coder Hack
 **Postman collection**
