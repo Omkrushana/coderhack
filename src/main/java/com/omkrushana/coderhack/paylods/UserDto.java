@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class UserDto {
 
-	private Long userId;
+	private String userId;
     private String username;
     private int score;
     private Set<Badges> badges;

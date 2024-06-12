@@ -23,22 +23,17 @@ public class UserService {
 		User user = this.dtoToUser(userDto);
 		User savedUser = this.userRepository.save(user);
 		return this.userToDto(savedUser);
-//        User user = new User();
-//        user.setUsername(userDetail.getUsername());
-//        user.setScore(0);
-//        user.setBadges(new HashSet<>());
-//        return userRepository.save(user);
 	}
 
 	public List<User> getAllUsers() {
 		return userRepository.findAll(Sort.by(Sort.Direction.ASC, "score"));
 	}
 
-	public Optional<User> getUserById(Long id) {
+	public Optional<User> getUserById(String id) {
 		return Optional.ofNullable(userRepository.findById(id).orElseThrow(() -> new UserNotFoundException()));
 	}
 
-	public UserDto updateUser(Long userId, int score) {
+	public UserDto updateUser(String userId, int score) {
 		User user = this.userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
 		if (score < 0 || score > 100) {
 			throw new InvalidScoreException("score should be between 0 - 100");
@@ -59,7 +54,7 @@ public class UserService {
 		return userDto1;
 	}
 
-	public void deleteUser(Long userId) {
+	public void deleteUser(String userId) {
 		User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
 		userRepository.delete(user);
 	}

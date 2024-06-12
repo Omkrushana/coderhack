@@ -39,7 +39,7 @@ public class UserController {
 	}
 
 	@GetMapping("/{userId}")
-	public ResponseEntity<User> getUser(@PathVariable("userId") Long userId) {
+	public ResponseEntity<User> getUser(@PathVariable("userId") String userId) {
 		System.out.println("get by id -> mapping work");
 		User user = userService.getUserById(userId).orElseThrow();
 		return ResponseEntity.ok(user);
@@ -62,7 +62,7 @@ public class UserController {
 	}
 
 	@PutMapping("/{userId}")
-	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Long uid) {
+	public ResponseEntity<?> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") String uid) {
 		if (userDto.getScore() < 0 || userDto.getScore() > 100) {
             ErrorResponse errorResponse = new ErrorResponse("Score should be between 0 and 100");
 
@@ -76,7 +76,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("/{userId}")
-	public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Long userId) {
+	public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") String userId) {
 		this.userService.deleteUser(userId);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted successfully", true), HttpStatus.OK);
 

@@ -3,37 +3,23 @@ package com.omkrushana.coderhack.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "user")
+@Document(collection = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private String userId;
     private String username;
     private int score = 0;
 
-    @ElementCollection
-    @CollectionTable(name = "user_badges", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
     private Set<Badges> badges = new HashSet<>();
 
-
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -58,7 +44,7 @@ public class User {
     }
 
     public void setBadges(Badges badges) {
-        getBadges().add(badges);
+        this.badges.add(badges);
     }
 
     public void setBadges(Set<Badges> badges) {
