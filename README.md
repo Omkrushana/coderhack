@@ -24,7 +24,7 @@ curl --location 'http://localhost:8080/users' \
 *Get User By ID*
 Get request (GET /users/{userId})
 
-curl --location 'http://localhost:8080/users/1' \
+curl --location 'http://localhost:8080/users/{userId}' \
 --header 'Content-Type: application/json' \
 --data ''
 
@@ -32,7 +32,7 @@ curl --location 'http://localhost:8080/users/1' \
 *Update User score by Id*
 Put request (PUT /users/{userId})
 
-curl --location --request PUT 'http://localhost:8080/users/1' \
+curl --location --request PUT 'http://localhost:8080/users/{userid}' \
 --header 'Content-Type: application/json' \
 --data '{
     "score":"20"
@@ -42,7 +42,7 @@ curl --location --request PUT 'http://localhost:8080/users/1' \
 *Delete user by id*
 Delete request (DELETE /users/{userId})
 
-curl --location --request DELETE 'http://localhost:8080/users/1' \
+curl --location --request DELETE 'http://localhost:8080/users/{userId}' \
 --header 'Content-Type: application/json' \
 --data ''
 
